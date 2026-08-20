@@ -47,6 +47,9 @@
             line-height: 2.2;
             direction: rtl;
         }
+        .indo-dynamic {
+            transition: font-size 0.15s ease;
+        }
         /* Custom scrollbar styling */
         ::-webkit-scrollbar {
             width: 8px;
@@ -98,11 +101,20 @@
 
                 <!-- Header Actions -->
                 <div class="flex items-center space-x-2">
-                    <!-- Arabic Font Size Adjuster -->
-                    <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
-                        <span class="text-xs px-1.5 text-slate-500 font-semibold">Teks Arab:</span>
-                        <button onclick="changeArabicSize(-2)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition" title="Kecilkan Teks Arab">A-</button>
-                        <button onclick="changeArabicSize(2)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition" title="Besarkan Teks Arab">A+</button>
+                    <div class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700 space-x-2">
+                        <!-- Indonesian Text Size Adjuster -->
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs px-1 text-slate-500 dark:text-slate-400 font-semibold">Teks Indo:</span>
+                            <button onclick="changeIndoSize(-1)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition text-slate-700 dark:text-slate-200" title="Kecilkan Teks Indonesia">A-</button>
+                            <button onclick="changeIndoSize(1)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition text-slate-700 dark:text-slate-200" title="Besarkan Teks Indonesia">A+</button>
+                        </div>
+                        <div class="h-4 w-px bg-slate-300 dark:bg-slate-700"></div>
+                        <!-- Arabic Text Size Adjuster -->
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs px-1 text-slate-500 dark:text-slate-400 font-semibold">Teks Arab:</span>
+                            <button onclick="changeArabicSize(-2)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition text-slate-700 dark:text-slate-200" title="Kecilkan Teks Arab">A-</button>
+                            <button onclick="changeArabicSize(2)" class="w-7 h-7 rounded flex items-center justify-center hover:bg-white dark:hover:bg-slate-700 text-xs font-bold transition text-slate-700 dark:text-slate-200" title="Besarkan Teks Arab">A+</button>
+                        </div>
                     </div>
 
                     <!-- Theme Switcher -->
@@ -133,11 +145,20 @@
             <button onclick="switchTab('faq'); toggleMobileMenu();" class="mobile-nav-btn w-full text-left px-3 py-2.5 rounded-lg text-sm font-semibold flex items-center">
                 <i class="fa-solid fa-circle-question w-6 text-emerald-600"></i> Urutan & Ketentuan Mukim
             </button>
-            <div class="pt-2 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs text-slate-500">
-                <span>Ukuran Teks Arab:</span>
-                <div class="flex items-center space-x-1">
-                    <button onclick="changeArabicSize(-2)" class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold">A-</button>
-                    <button onclick="changeArabicSize(2)" class="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold">A+</button>
+            <div class="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-2 text-xs text-slate-500">
+                <div class="flex items-center justify-between">
+                    <span>Ukuran Teks Indonesia:</span>
+                    <div class="flex items-center space-x-1">
+                        <button onclick="changeIndoSize(-1)" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold text-slate-700 dark:text-slate-200">A-</button>
+                        <button onclick="changeIndoSize(1)" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold text-slate-700 dark:text-slate-200">A+</button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span>Ukuran Teks Arab:</span>
+                    <div class="flex items-center space-x-1">
+                        <button onclick="changeArabicSize(-2)" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold text-slate-700 dark:text-slate-200">A-</button>
+                        <button onclick="changeArabicSize(2)" class="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 rounded font-bold text-slate-700 dark:text-slate-200">A+</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -154,7 +175,7 @@
                     <i class="fa-solid fa-kaaba mr-1.5"></i> Yayasan PPTQ Baitul Basyar Kota Malang
                 </span>
                 <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">Buku Panduan Sholat Jamak & Qashar</h2>
-                <p class="text-emerald-100 text-sm sm:text-base mb-6 leading-relaxed">
+                <p class="text-emerald-100 text-base sm:text-lg mb-6 leading-relaxed indo-dynamic">
                     Panduan praktis syarat sah, lafadz niat baku bahasa Arab (`قَصْرًا`), latin, serta tata cara pelaksanaan sholat musafir berdasarkan mu'tamad Fiqh Mazhab Syafi'i.
                 </p>
                 <div class="flex flex-wrap gap-3">
@@ -169,27 +190,26 @@
         </div>
 
         <section id="content-pengertian" class="tab-content space-y-6">
-            <!-- Basic Overview Cards -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1: Sholat Jamak -->
                 <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/80 dark:border-slate-700/80 hover:shadow-md transition">
                     <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-layer-group"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">1. Sholat Jamak</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">1. Sholat Jamak</h3>
+                    <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-4 indo-dynamic">
                         Menggabungkan dua sholat fardhu dalam satu waktu. Pasangan sholat yang diperbolehkan dijamak dalam Mazhab Syafi'i:
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-200">
-                        <li class="flex items-center text-emerald-600 dark:text-emerald-400 font-medium">
+                    <ul class="space-y-2 text-base text-slate-700 dark:text-slate-200 indo-dynamic">
+                        <li class="flex items-center text-emerald-600 dark:text-emerald-400 font-semibold">
                             <i class="fa-solid fa-check-circle mr-2"></i> Dzuhur dengan Ashar
                         </li>
-                        <li class="flex items-center text-emerald-600 dark:text-emerald-400 font-medium">
+                        <li class="flex items-center text-emerald-600 dark:text-emerald-400 font-semibold">
                             <i class="fa-solid fa-check-circle mr-2"></i> Maghrib dengan Isya
                         </li>
                     </ul>
-                    <div class="mt-4 p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50 rounded-xl text-xs text-amber-800 dark:text-amber-300 flex items-start">
-                        <i class="fa-solid fa-triangle-exclamation mr-2 mt-0.5 flex-shrink-0"></i>
+                    <div class="mt-4 p-3.5 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50 rounded-xl text-sm text-amber-900 dark:text-amber-300 flex items-start indo-dynamic">
+                        <i class="fa-solid fa-triangle-exclamation mr-2.5 mt-0.5 text-base flex-shrink-0"></i>
                         <span><strong>Catatan Fiqh:</strong> Sholat Subuh tidak dapat dijamak dengan sholat apa pun. Sholat Ashar juga tidak dapat dijamak dengan Maghrib.</span>
                     </div>
                 </div>
@@ -199,15 +219,15 @@
                     <div class="w-12 h-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-clock font-bold"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">2. Taqdim vs Ta'khir</h3>
-                    <div class="space-y-3 text-sm">
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-emerald-600 dark:text-emerald-400 mb-1"><i class="fa-solid fa-forward mr-1"></i> Jamak Taqdim</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Menggabungkan dua sholat dan mengerjakannya <strong>di waktu sholat pertama</strong> (misal: Dzuhur & Ashar di waktu Dzuhur).</p>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">2. Taqdim vs Ta'khir</h3>
+                    <div class="space-y-3">
+                        <div class="p-3.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/60 dark:border-slate-700">
+                            <p class="font-bold text-emerald-600 dark:text-emerald-400 mb-1 text-base"><i class="fa-solid fa-forward mr-1"></i> Jamak Taqdim</p>
+                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Menggabungkan dua sholat dan mengerjakannya <strong>di waktu sholat pertama</strong> (misal: Dzuhur & Ashar di waktu Dzuhur).</p>
                         </div>
-                        <div class="p-3 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-teal-600 dark:text-teal-400 mb-1"><i class="fa-solid fa-backward mr-1"></i> Jamak Ta'khir</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Menggabungkan dua sholat dan mengerjakannya <strong>di waktu sholat kedua</strong> (misal: Dzuhur & Ashar di waktu Ashar).</p>
+                        <div class="p-3.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl border border-slate-200/60 dark:border-slate-700">
+                            <p class="font-bold text-teal-600 dark:text-teal-400 mb-1 text-base"><i class="fa-solid fa-backward mr-1"></i> Jamak Ta'khir</p>
+                            <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Menggabungkan dua sholat dan mengerjakannya <strong>di waktu sholat kedua</strong> (misal: Dzuhur & Ashar di waktu Ashar).</p>
                         </div>
                     </div>
                 </div>
@@ -217,11 +237,11 @@
                     <div class="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl mb-4">
                         <i class="fa-solid fa-scissors"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">3. Sholat Qashar</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">3. Sholat Qashar</h3>
+                    <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-3 indo-dynamic">
                         Meringkas sholat fardhu yang berjumlah <strong>4 rakaat menjadi 2 rakaat</strong> (<em>Rukhsah Musafir</em>).
                     </p>
-                    <div class="bg-indigo-50 dark:bg-indigo-950/40 p-3 rounded-xl border border-indigo-200 dark:border-indigo-800/50 text-xs text-indigo-900 dark:text-indigo-200 space-y-1">
+                    <div class="bg-indigo-50 dark:bg-indigo-950/40 p-3.5 rounded-xl border border-indigo-200 dark:border-indigo-800/50 text-sm text-indigo-900 dark:text-indigo-200 space-y-1.5 indo-dynamic">
                         <p class="font-semibold"><i class="fa-solid fa-check mr-1 text-emerald-500"></i> Boleh Diqashar (4 &rarr; 2 Rakaat):</p>
                         <p class="pl-4 text-slate-600 dark:text-slate-300">Dzuhur, Ashar, dan Isya.</p>
                         <p class="font-semibold pt-1"><i class="fa-solid fa-xmark mr-1 text-rose-500"></i> Tidak Boleh Diqashar:</p>
@@ -236,39 +256,39 @@
                     <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
                         Rujukan Kitab Turats Fiqh Syafi'iyyah
                     </span>
-                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 flex items-center">
+                    <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mt-1 flex items-center">
                         <i class="fa-solid fa-scroll text-emerald-600 mr-2.5"></i> Syarat Sah Menurut Mazhab Syafi'i
                     </h3>
                 </div>
 
                 <!-- Syarat Perjalanan (Musafir) -->
                 <div>
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs flex items-center justify-center mr-2">A</span>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-3 flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-emerald-600 text-white text-sm flex items-center justify-center mr-2">A</span>
                         Syarat Perjalanan (Safar) yang Memperbolehkan Rukhsah
                     </h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-xs text-emerald-600 dark:text-emerald-400 mb-1">1. Jarak Tempuh (Masafah)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">1. Jarak Tempuh (Masafah)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Minimal 2 Marhalah (± 16 Farsakh / 81 - 89 KM). Pendapat masyhur mazhab Syafi'i berada di kisaran <strong>82 - 84 KM</strong>.
                             </p>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-xs text-emerald-600 dark:text-emerald-400 mb-1">2. Perjalanan Mubah</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">2. Perjalanan Mubah</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Bukan perjalanan maksiat. Seperti untuk silaturahmi, berdagang, menuntut ilmu, rekreasi halal, atau tugas kerja.
                             </p>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-xs text-emerald-600 dark:text-emerald-400 mb-1">3. Melewati Batas Desa</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">3. Melewati Batas Desa</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Niat jamak/qashar baru berlaku <strong>setelah keluar dari batas wilayah pemukiman/desa/kelurahan</strong> asal tempat tinggal.
                             </p>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200/60 dark:border-slate-700">
-                            <p class="font-bold text-xs text-emerald-600 dark:text-emerald-400 mb-1">4. Tujuan Jelas (Qashd)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <p class="font-bold text-sm text-emerald-600 dark:text-emerald-400 mb-1">4. Tujuan Jelas (Qashd)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Memiliki arah lokasi tujuan yang pasti (bukan bepergian tanpa arah atau berkeliling tanpa tujuan jelas).
                             </p>
                         </div>
@@ -277,74 +297,74 @@
 
                 <!-- 4 Syarat Sah Jamak Taqdim Syafi'i -->
                 <div class="pt-2">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-emerald-600 text-white text-xs flex items-center justify-center mr-2">B</span>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-3 flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-emerald-600 text-white text-sm flex items-center justify-center mr-2">B</span>
                         4 Syarat Sah Jamak Taqdim (Mazhab Syafi'i)
                     </h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-slate-700/50 border border-emerald-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-emerald-800 dark:text-emerald-300">1. Al-Bada'ah bil Ula (Urutan Sholat)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Wajib mendahulukan sholat pertama terlebih dahulu (Dzuhur sebelum Ashar, Maghrib sebelum Isya).</p>
+                            <p class="font-bold text-sm text-emerald-800 dark:text-emerald-300">1. Al-Bada'ah bil Ula (Urutan Sholat)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Wajib mendahulukan sholat pertama terlebih dahulu (Dzuhur sebelum Ashar, Maghrib sebelum Isya).</p>
                         </div>
                         <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-slate-700/50 border border-emerald-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-emerald-800 dark:text-emerald-300">2. Niat Jamak di Sholat Pertama</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Niat menjamak sholat kedua ke sholat pertama di dalam hati sewaktu Takbiratul Ihram hingga sebelum Salam sholat pertama.</p>
+                            <p class="font-bold text-sm text-emerald-800 dark:text-emerald-300">2. Niat Jamak di Sholat Pertama</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Niat menjamak sholat kedua ke sholat pertama di dalam hati sewaktu Takbiratul Ihram hingga sebelum Salam sholat pertama.</p>
                         </div>
                         <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-slate-700/50 border border-emerald-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-emerald-800 dark:text-emerald-300">3. Al-Muwalat (Berurutan / Sambung)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Langsung mengerjakan sholat kedua setelah salam sholat pertama tanpa jeda waktu lama (hanya ditoleransi jeda wudhu ringan/iqamah).</p>
+                            <p class="font-bold text-sm text-emerald-800 dark:text-emerald-300">3. Al-Muwalat (Berurutan / Sambung)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Langsung mengerjakan sholat kedua setelah salam sholat pertama tanpa jeda waktu lama (hanya ditoleransi jeda wudhu ringan/iqamah).</p>
                         </div>
                         <div class="p-4 rounded-xl bg-emerald-50/60 dark:bg-slate-700/50 border border-emerald-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-emerald-800 dark:text-emerald-300">4. Dawam as-Safar (Masih Musafir)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Status perjalanan masih berlangsung hingga saat Takbiratul Ihram pada sholat yang kedua.</p>
+                            <p class="font-bold text-sm text-emerald-800 dark:text-emerald-300">4. Dawam as-Safar (Masih Musafir)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Status perjalanan masih berlangsung hingga saat Takbiratul Ihram pada sholat yang kedua.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- 2 Syarat Sah Jamak Ta'khir Syafi'i -->
                 <div class="pt-2">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs flex items-center justify-center mr-2">C</span>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-3 flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-teal-600 text-white text-sm flex items-center justify-center mr-2">C</span>
                         2 Syarat Sah Jamak Ta'khir (Mazhab Syafi'i)
                     </h4>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="p-4 rounded-xl bg-teal-50/60 dark:bg-slate-700/50 border border-teal-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-teal-800 dark:text-teal-300">1. Niat Ta'khir di Waktu Pertama</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300"><strong>Wajib berniat di dalam hati pada waktu sholat pertama</strong> (misal waktu Dzuhur) bahwa sholat tersebut diundurkan ke waktu sholat kedua.</p>
+                            <p class="font-bold text-sm text-teal-800 dark:text-teal-300">1. Niat Ta'khir di Waktu Pertama</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic"><strong>Wajib berniat di dalam hati pada waktu sholat pertama</strong> (misal waktu Dzuhur) bahwa sholat tersebut diundurkan ke waktu sholat kedua.</p>
                         </div>
                         <div class="p-4 rounded-xl bg-teal-50/60 dark:bg-slate-700/50 border border-teal-200/60 dark:border-slate-600 space-y-1">
-                            <p class="font-bold text-xs text-teal-800 dark:text-teal-300">2. Dawam as-Safar (Masih Musafir)</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">Status musafir masih berlanjut sampai selesainya pengerjaan kedua sholat tersebut di waktu kedua.</p>
+                            <p class="font-bold text-sm text-teal-800 dark:text-teal-300">2. Dawam as-Safar (Masih Musafir)</p>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">Status musafir masih berlanjut sampai selesainya pengerjaan kedua sholat tersebut di waktu kedua.</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- 7 Syarat Sah Qashar Syafi'i -->
                 <div class="pt-2">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3 flex items-center">
-                        <span class="w-6 h-6 rounded-full bg-indigo-600 text-white text-xs flex items-center justify-center mr-2">D</span>
+                    <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-3 flex items-center">
+                        <span class="w-7 h-7 rounded-full bg-indigo-600 text-white text-sm flex items-center justify-center mr-2">D</span>
                         7 Syarat Sah Qashar (Mazhab Syafi'i)
                     </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs text-slate-700 dark:text-slate-300">
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm text-slate-700 dark:text-slate-300">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>1. Perjalanan 2 Marhalah:</strong> Mencapai jarak minimal ±81-89 km.
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>2. Perjalanan Mubah:</strong> Bukan untuk tujuan maksiat.
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>3. Sholat Ruba'iyyah:</strong> Hanya sholat 4 rakaat (Dzuhur, Ashar, Isya).
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>4. Niat Qashar saat Takbir:</strong> Menyebutkan niat <em>Qashran</em> saat Takbiratul Ihram.
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>5. Tidak Bermakmum Orang Mukim:</strong> Tidak bermakmum kepada imam yang sholatnya sempurna (4 rakaat).
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 indo-dynamic">
                             <strong>6. Mengetahui Kebolehan:</strong> Tahu hukum Fiqh kebolehan mengqashar.
                         </div>
-                        <div class="p-3 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 sm:col-span-2 lg:col-span-1">
+                        <div class="p-3.5 bg-indigo-50/50 dark:bg-slate-700/40 rounded-xl border border-indigo-100 dark:border-slate-700 sm:col-span-2 lg:col-span-1 indo-dynamic">
                             <strong>7. Berkelanjutan Safar:</strong> Status musafir bertahan hingga salam.
                         </div>
                     </div>
@@ -359,7 +379,7 @@
                         <i class="fa-solid fa-wand-magic-sparkles text-2xl"></i>
                     </span>
                     <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Asisten Niat Sholat Musafir</h3>
-                    <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">
+                    <p class="text-base text-slate-600 dark:text-slate-300 mt-1.5 indo-dynamic">
                         Pilih kondisi sholat Anda di bawah ini untuk mendapatkan petunjuk urutan dan lafadz niat standar Mazhab Syafi'i.
                     </p>
                 </div>
@@ -558,19 +578,19 @@
 
                 <!-- FAQ Section -->
                 <div class="border-t border-slate-200 dark:border-slate-700 pt-6">
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-3 flex items-center">
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-center">
                         <i class="fa-solid fa-circle-question text-amber-500 mr-2.5"></i> Pertanyaan Sering Diajukan (FAQ Fiqh)
                     </h3>
                     <div class="space-y-4">
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-700">
-                            <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Bagaimana jika bermakmum kepada imam yang sholatnya sempurna (mukim)?</h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Bagaimana jika bermakmum kepada imam yang sholatnya sempurna (mukim)?</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Dalam Mazhab Syafi'i, jika seorang musafir bermakmum kepada imam yang mukim (atau imam yang sholatnya sempurna 4 rakaat), maka musafir tersebut <strong>wajib menyempurnakan sholatnya menjadi 4 rakaat</strong> mengikuti imam hingga salam, meskipun awalnya ia berniat qashar.
                             </p>
                         </div>
                         <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-700/40 border border-slate-200 dark:border-slate-700">
-                            <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-1">Bagaimana jika urusan di tempat tujuan belum pasti selesai kapan?</h4>
-                            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                            <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Bagaimana jika urusan di tempat tujuan belum pasti selesai kapan?</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed indo-dynamic">
                                 Jika seseorang menetap di suatu tempat untuk menyelesikan urusan yang diperkirakan bisa selesai sewaktu-waktu tanpa berniat menetap 4 hari, menurut Mazhab Syafi'i ia boleh mengqashar sholat hingga <strong>18 hari</strong> (selain hari kedatangan dan keberangkatan).
                             </p>
                         </div>
@@ -601,7 +621,7 @@
                 subtitle: 'Dikerjakan di waktu Dhuhur, diringkas 2 rakaat',
                 arab: 'أُصَلَّى فَرْضَ الظُّهْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالْعَصْرِ جَمْعَ تَقْدِيمِ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhaz-zhuhri rok'ataini qashran majmuu'an bil-'ashri jam'a taqdiimin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Dhuhur dua rakaat dijamak bersama Ashar dengan jamak taqdim karena Allah Taala.”'
+                terjemahan: '“Saya niat shalat fardlu Dhuhur dua rakaat secara qashar dijamak bersama Ashar dengan jamak taqdim karena Allah Taala.”'
             },
             {
                 id: 'ashar-taqdim-qashar',
@@ -612,7 +632,7 @@
                 subtitle: 'Dikerjakan di waktu Dhuhur setelah sholat Dhuhur selesai',
                 arab: 'أُصَلَّى فَرْضَ الْعَصْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالظُّهْرِ جَمْعَ تَقْدِيمٍ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhal-'ashri rok'ataini qashran majmuu'an bizh-zhuhri jam'a taqdiimin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Ashar dua rakaat dijamak bersama Dhuhur dengan jamak taqdim karena Allah Taala.”'
+                terjemahan: '“Saya niat shalat fardlu Ashar dua rakaat secara qashar dijamak bersama Dhuhur dengan jamak taqdim karena Allah Taala.”'
             },
             {
                 id: 'dzuhur-taqdim-sempurna',
@@ -645,7 +665,7 @@
                 subtitle: 'Dikerjakan di waktu Ashar (syarat: niat ta\'khir sudah dipasang di waktu Dhuhur)',
                 arab: 'أُصَلَّى فَرْضَ الظُّهْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالْعَصْرِ جَمْعَ تَأْخِيرٍ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhaz-zhuhri rok'ataini qashran majmuu'an bil-'ashri jam'a ta'khiirin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Dhuhur dua rakaat dijamak bersama Ashar dengan jamak ta\'khir karena Allah Taala.”'
+                terjemahan: '“Saya niat shalat fardlu Dhuhur dua rakaat secara qashar dijamak bersama Ashar dengan jamak ta\'khir karena Allah Taala.”'
             },
             {
                 id: 'ashar-takhir-qashar',
@@ -656,7 +676,7 @@
                 subtitle: 'Dikerjakan di waktu Ashar',
                 arab: 'أُصَلَّى فَرْضَ الْعَصْرِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالظُّهْرِ جَمْعَ تَأْخِيرٍ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhal-'ashri rok'ataini qashran majmuu'an bizh-zhuhri jam'a ta'khiirin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Ashar dua rakaat dijamak bersama Dhuhur dengan jamak ta\'khir karena Allah Taala.”'
+                terjemahan: '“Saya niat shalat fardlu Ashar dua rakaat secara qashar dijamak bersama Dhuhur dengan jamak ta\'khir karena Allah Taala.”'
             },
             {
                 id: 'dzuhur-takhir-sempurna',
@@ -700,7 +720,7 @@
                 subtitle: 'Dikerjakan di waktu Maghrib setelah sholat Maghrib selesai (2 rakaat)',
                 arab: 'أُصَلَّى فَرْضَ الْعِشَاءِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالْمَغْرِبِ جَمْعَ تَقْدِيمٍ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhal 'isyaa-i rok'ataini qashran majmuu'an bil maghribi jam'a taqdiimin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Isya dua rakaat dijamak bersama Maghrib dengan jamak taqdim karena Allah Ta\'ala.”'
+                terjemahan: '“Saya niat shalat fardlu Isya dua rakaat secara Qashar dijamak bersama Maghrib dengan jamak taqdim karena Allah Ta\'ala.”'
             },
             {
                 id: 'isya-taqdim-sempurna',
@@ -731,9 +751,9 @@
                 mode: 'qashar',
                 title: 'Niat Jamak Ta\'khir & Qashar Sholat Isya',
                 subtitle: 'Dikerjakan di waktu Isya (2 rakaat)',
-                arab: 'أُصَلَّى فَرْضَ الْعِشَاءِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالْمَغْرِبِ جَمْعَ تَأْخِيرٍ لِلَّهِ Tَعَالَى',
+                arab: 'أُصَلَّى فَرْضَ الْعِشَاءِ رَكْعَتَيْنِ قَصْرًا مَجْمُوعًا بِالْمَغْرِبِ جَمْعَ تَأْخِيرٍ لِلَّهِ تَعَالَى',
                 latin: "Usholli fardhal 'isyaa-i rok'ataini qashran majmuu'an bil maghribi jam'a ta'khiirin lillaahi ta'aala.",
-                terjemahan: '“Saya niat shalat fardlu Isya dua rakaat dijamak bersama Maghrib dengan jamak ta\'khir karena Allah Ta\'ala.”'
+                terjemahan: '“Saya niat shalat fardlu Isya dua rakaat secara Qashar dijamak bersama Maghrib dengan jamak ta\'khir karena Allah Ta\'ala.”'
             },
             {
                 id: 'isya-takhir-sempurna',
@@ -751,6 +771,7 @@
         // State Management
         let currentTab = 'pengertian';
         let arabicFontSize = 24; // default px font size for Arabic text
+        let indoFontSize = 16;   // default px font size for Indonesian text
         let wizardState = {
             pair: 'dzuhur-ashar',
             time: 'taqdim',
@@ -808,9 +829,17 @@
 
         // Change Arabic Font Size
         function changeArabicSize(delta) {
-            arabicFontSize = Math.min(Math.max(arabicFontSize + delta, 18), 36);
+            arabicFontSize = Math.min(Math.max(arabicFontSize + delta, 18), 38);
             document.querySelectorAll('.arabic-dynamic').forEach(el => {
                 el.style.fontSize = arabicFontSize + 'px';
+            });
+        }
+
+        // Change Indonesian Font Size
+        function changeIndoSize(delta) {
+            indoFontSize = Math.min(Math.max(indoFontSize + delta, 13), 24);
+            document.querySelectorAll('.indo-dynamic').forEach(el => {
+                el.style.fontSize = indoFontSize + 'px';
             });
         }
 
@@ -873,8 +902,8 @@
             
             // Fiqh Rule Warning Banner for Urutan
             htmlContent += `
-                <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 text-xs text-amber-900 dark:text-amber-200 space-y-1">
-                    <p class="font-bold flex items-center"><i class="fa-solid fa-scroll mr-1.5 text-amber-600"></i> Ketentuan Urutan Mazhab Syafi'i:</p>
+                <div class="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/50 text-sm text-amber-900 dark:text-amber-200 space-y-1.5 indo-dynamic">
+                    <p class="font-bold flex items-center text-base"><i class="fa-solid fa-scroll mr-1.5 text-amber-600"></i> Ketentuan Urutan Mazhab Syafi'i:</p>
                     <p>1. <strong>Taqdim:</strong> Wajib kerjakan sholat pertama dahulu hingga salam, lalu berdiri sholat kedua (muwalat/tanpa jeda lama).</p>
                     <p>2. <strong>Ta'khir:</strong> Bebas mendahulukan sholat pertama/kedua (afdhal sholat pertama dahulu). Syarat utama: niat ta'khir sudah ada pada waktu pertama.</p>
                 </div>
@@ -901,14 +930,14 @@
 
                         <div>
                             <p class="text-xs text-slate-400 mb-1 font-semibold">Lafadz Latin:</p>
-                            <p class="text-xs italic text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/40 p-3 rounded-lg">
+                            <p class="text-sm italic text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/40 p-3 rounded-lg indo-dynamic">
                                 "${niat.latin}"
                             </p>
                         </div>
 
                         <div>
                             <p class="text-xs text-slate-400 mb-1 font-semibold">Terjemahan Indonesia:</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-300">
+                            <p class="text-sm text-slate-700 dark:text-slate-200 leading-relaxed indo-dynamic" style="font-size: ${indoFontSize}px;">
                                 ${niat.terjemahan}
                             </p>
                         </div>
@@ -937,8 +966,8 @@
                 container.innerHTML = `
                     <div class="bg-white dark:bg-slate-800 rounded-2xl p-12 text-center border border-slate-200 dark:border-slate-700">
                         <i class="fa-solid fa-folder-open text-4xl text-slate-400 mb-3"></i>
-                        <p class="text-base font-bold text-slate-800 dark:text-slate-200">Tidak ada niat yang cocok</p>
-                        <p class="text-xs text-slate-500 mt-1">Coba sesuaikan kata kunci pencarian atau filter Anda.</p>
+                        <p class="text-lg font-bold text-slate-800 dark:text-slate-200">Tidak ada niat yang cocok</p>
+                        <p class="text-sm text-slate-500 mt-1">Coba sesuaikan kata kunci pencarian atau filter Anda.</p>
                     </div>
                 `;
                 return;
@@ -953,9 +982,9 @@
                                 <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2.5 py-1 rounded-md">
                                     ${niat.sholatGroup === 'dzuhur-ashar' ? 'Dzuhur & Ashar' : 'Maghrib & Isya'} • ${niat.tipe === 'taqdim' ? 'Taqdim' : "Ta'khir"}
                                 </span>
-                                <h4 class="text-base font-bold text-slate-900 dark:text-white mt-2">${niat.title}</h4>
+                                <h4 class="text-lg font-bold text-slate-900 dark:text-white mt-2">${niat.title}</h4>
                             </div>
-                            <span class="text-xs text-slate-500 font-medium">${niat.subtitle}</span>
+                            <span class="text-sm text-slate-500 font-medium">${niat.subtitle}</span>
                         </div>
 
                         <div>
@@ -964,14 +993,14 @@
                             </p>
                         </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                            <div class="bg-slate-50 dark:bg-slate-700/30 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-50 dark:bg-slate-700/30 p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-700">
                                 <span class="font-bold text-slate-500 dark:text-slate-400 block mb-1">Lafadz Latin:</span>
-                                <p class="italic text-slate-700 dark:text-slate-300">"${niat.latin}"</p>
+                                <p class="italic text-slate-700 dark:text-slate-300 indo-dynamic">"${niat.latin}"</p>
                             </div>
-                            <div class="bg-slate-50 dark:bg-slate-700/30 p-3 rounded-xl border border-slate-200/60 dark:border-slate-700">
+                            <div class="bg-slate-50 dark:bg-slate-700/30 p-3.5 rounded-xl border border-slate-200/60 dark:border-slate-700">
                                 <span class="font-bold text-slate-500 dark:text-slate-400 block mb-1">Terjemahan Indonesia:</span>
-                                <p class="text-slate-600 dark:text-slate-300">${niat.terjemahan}</p>
+                                <p class="text-slate-700 dark:text-slate-200 leading-relaxed indo-dynamic" style="font-size: ${indoFontSize}px;">${niat.terjemahan}</p>
                             </div>
                         </div>
                     </div>
